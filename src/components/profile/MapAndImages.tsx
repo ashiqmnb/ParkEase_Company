@@ -18,14 +18,16 @@ interface MapAndImagesProps{
 
 const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, addressId, refetch}) => {
 
-   const hasValidCoordinates = latitude !== undefined && longitude !== undefined;
-   
-   const [currentLat, setCurrentLat] = useState(latitude);
-   const [currentLng, setCurrentLng] = useState(longitude);
+   const isValidNumber = (num: any) => typeof num === "number" && !isNaN(num);
+   const [currentLat, setCurrentLat] = useState(
+      isValidNumber(latitude) ? latitude : 0
+   );
+   const [currentLng, setCurrentLng] = useState(
+      isValidNumber(longitude) ? longitude : 0
+   );
+
    const [isEditing, setIsEditing] = useState(false);
-
    const [mapKey, setMapKey] = useState(0);
-
 
    const editLatLongMutation = useMutation({
       mutationFn:EditLatLong,
@@ -40,9 +42,7 @@ const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, 
       },
    })
 
-
    const handleEditLatLong = ()=>{
-
       if(addressId == undefined || currentLat == undefined || currentLng == undefined){
          toast.warning("adjust dragger to update mapview");
          return;
@@ -137,11 +137,9 @@ const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, 
                )}
             </Box>
          </Box>
-
          <Box sx={{ height: "auto", width: "60%", display:'flex', flexDirection:'column', minHeight:'400px' }}>
             <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                <Typography>Mapview</Typography>
-
                {isEditing ? 
                   
                   <Box>
@@ -150,9 +148,9 @@ const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, 
                         sx={{ textTransform:'none', backgroundColor:'#2DC98A', color:'white' }}
                         onClick={handleEditLatLong}>
                         {editLatLongMutation.isPending ? (
-                          <CircularProgress size={24} sx={{ color: "white" }} />
+                        <CircularProgress size={24} sx={{ color: "white" }} />
                            ) : (
-                          "Save"
+                        "Save"
                         )}
                      </Button>
                      <Button
@@ -176,25 +174,21 @@ const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, 
                   </Button>
                }
             </Box>
-
-            {hasValidCoordinates ? (
+            {isValidNumber(latitude) && isValidNumber(longitude) ? (
                <MapComponent
                   key={mapKey}
-                  latitude={latitude} 
-                  longitude={longitude} 
+                  latitude={latitude}
+                  longitude={longitude}
                   onLocationChange={(lat, lng) => {
                      setCurrentLat(lat);
                      setCurrentLng(lng);
                   }}
                   isEditing={isEditing}
-
                />
             ) : (
-               <Typography>No location data available</Typography>
+               <Typography>No valid location data available</Typography>
             )}
          </Box>
-
-
          <AddImagesModal
             open={addImgOpen}
             onClose={()=> setAddImgOpen(false)}
@@ -203,5 +197,4 @@ const MapAndImages:React.FC<MapAndImagesProps> = ({images, latitude, longitude, 
       </Box>
    );
 };
-
 export default MapAndImages;

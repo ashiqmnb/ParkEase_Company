@@ -38,24 +38,28 @@ const ProfileContainer = () => {
       state: "",
       subscriptionStatus: "",
       type: "",
+      startDate: "",
+      endDate: ""
    };
 
    const profileDescription: ProfileDescription = profileData?.data
       ? {
-           addressId: profileData.data.addressId ?? "",
-           coins: profileData.data.coins ?? 0,
-           description: profileData.data.description ?? "",
-           district: profileData.data.district ?? "",
-           email: profileData.data.email ?? "",
-           isBlocked: profileData.data.isBlocked ?? false,
-           name: profileData.data.name ?? "",
-           phone: profileData.data.phone ?? "",
-           place: profileData.data.place ?? "",
-           postalCode: profileData.data.postalCode ?? "",
-           profile: profileData.data.profile ?? "",
-           state: profileData.data.state ?? "",
-           subscriptionStatus: profileData.data.subscriptionStatus ?? "",
-           type: profileData.data.type ?? "",
+            addressId: profileData.data.addressId ?? "",
+            coins: profileData.data.coins ?? 0,
+            description: profileData.data.description ?? "",
+            district: profileData.data.district ?? "",
+            email: profileData.data.email ?? "",
+            isBlocked: profileData.data.isBlocked ?? false,
+            name: profileData.data.name ?? "",
+            phone: profileData.data.phone ?? "",
+            place: profileData.data.place ?? "",
+            postalCode: profileData.data.postalCode ?? "",
+            profile: profileData.data.profile ?? "",
+            state: profileData.data.state ?? "",
+            subscriptionStatus: profileData.data.subscriptionStatus ?? "",
+            type: profileData.data.type ?? "",
+            startDate: profileData.data.startDate ?? "",
+            endDate: profileData.data.endDate ?? "",
         }
       : defaultProfile;
 
@@ -70,8 +74,8 @@ const ProfileContainer = () => {
          
          <MapAndImages
             images={profileData?.data.images || []}
-            latitude={profileData?.data.latitude}
-            longitude={profileData?.data.longitude}
+            latitude={Number(profileData?.data.latitude)}
+            longitude={Number(profileData?.data.longitude)}
             addressId={profileData?.data.addressId}
             refetch={refetch}
             />

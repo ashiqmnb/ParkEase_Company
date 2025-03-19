@@ -88,3 +88,22 @@ export const updateProfile = async(values : any)=>{
       return Promise.reject(err.response.data);
    }
 }
+
+
+export const purchaseSubscription = async (days:number)=>{
+   try{
+      const res = await axios.post(`https://localhost:7050/api/Coin/add-subscription?days=${days}`,
+         {},
+         {
+            headers: {
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+         }
+      )
+
+      console.log("purchaseSubscription res", res.data)
+   }
+   catch (err: any) {
+      return Promise.reject(err.response.data);
+   }
+}

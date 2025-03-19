@@ -4,6 +4,7 @@ import { ProfileDescription } from "../../types/profile";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UpdateProfileModal from "../modals/UpdateProfileModal";
+import AddSubModal from "../modals/AddSubModal";
 
 
 interface ProfileDetailsProps{
@@ -18,6 +19,7 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
    const navigate = useNavigate();
 
    const [openUpdate, setOpenUpdate] = useState<boolean>(false);
+   const [openSubs, setOpenSubs] = useState<boolean>(false);
 
    const [preview, setPreview] = useState<string | null>(null);
    const [image, setImage] = useState<File | null>(null);
@@ -71,19 +73,48 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
          <Box
             sx={{display:'flex', gap:2}}
             >
-            <Box
-               component="img"
-               src={data.profile ?? "fallback-image-url.jpg"}
-               // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsDcwXQ2w9u4FMlEf_MMgtV0UGOblUKItSPQ&s"
-               sx={{
-                  borderRadius:'5px',
-                  boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
-                  // minHeight:'200px',
-                  // minWidth:'200px',
-                  height: "250px",
-                  width: "250px",
-               }}
-            />
+            {data.profile ? 
+               <Box
+                  component="img"
+                  src={data.profile}
+                  sx={{
+                     borderRadius:'5px',
+                     boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+                     height: "250px",
+                     width: "250px",
+                  }}
+               />
+               :
+               <Box 
+                  sx={{
+                     borderRadius:'5px',
+                     boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+                     height: "250px",
+                     width: "250px",
+                     display:'flex',
+                     flexDirection:'column',
+                     justifyContent:'center',
+                     alignItems:'center'
+                  }}
+                  >
+                  <Typography sx={{color:'gray'}}>
+                     No profile added
+                  </Typography>
+                  <Button
+                     size="small"
+                     onClick={()=> setOpenUpdate(true)}
+                     sx={{
+                        textTransform:'none', 
+                        backgroundColor:'#2DC98A', 
+                        color:'white',
+                        height:'30px',
+                        width:'100px',
+                     }}
+                     >
+                     Add Profile
+                  </Button>
+               </Box>
+            }
 
             {/* right side */}
             <Box sx={{flex:1}}>
@@ -121,7 +152,7 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
                         Contact
                      </Typography>
                      <Typography sx={{ fontSize:'14px'}} >
-                       Email :-  {data.email}
+                        Email :- {data.email}
                      </Typography>
                      <Typography sx={{ fontSize:'14px'}} >
                        Phone :-  {data.phone}
@@ -191,18 +222,19 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
                            {data.subscriptionStatus}
                         </Typography>
                      </Box>
-                     {data.subscriptionStatus === "Actice" ?
+                     {data.subscriptionStatus === "Active" ?
                         <Box>
                            <Typography sx={{ fontSize:'14px'}}>
-                              Start Date : 12/11/2024
+                              Start Date : {new Date(data.startDate).toLocaleDateString('en-GB')}
                            </Typography>
                            <Typography sx={{ fontSize:'14px'}}>
-                              End Date : 12/12/2024
+                              End Date : {new Date(data.endDate).toLocaleDateString('en-GB')}
                            </Typography>
                         </Box>
                         :
                         <Box sx={{marginTop:'20px'}}>
                            <Button
+                              onClick={()=>setOpenSubs(true)}
                               sx={{
                                  textTransform:'none',
                                  backgroundColor:'#101921',
@@ -263,8 +295,13 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
             handleImageUpload={handleImageUpload}
             image={image}
             refetch={refetch}
-            />
+         />
 
+         <AddSubModal
+            open={openSubs}
+            onClose={()=>setOpenSubs(false)}
+            refetch={refetch}
+         />
 
       </Box>
    );

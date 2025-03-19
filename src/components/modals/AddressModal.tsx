@@ -102,7 +102,7 @@ const AddressModal: React.FC<AddressModalProps> = ({open, onClose, refetch}) => 
           {addAddressMutation.isPending ? (
             <CircularProgress size={24} sx={{ color: "white" }} />
           ) : (
-            "Sign In"
+            "Save"
           )}
         </Button>
       </DialogActions>

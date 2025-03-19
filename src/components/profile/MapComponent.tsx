@@ -32,6 +32,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { LatLngExpression, LatLng } from "leaflet";
 import { useState } from "react";
+import { Box, Typography } from "@mui/material";
 
 interface MapComponentProps{
   latitude: number; 
@@ -42,6 +43,27 @@ interface MapComponentProps{
 
 const MapComponent: React.FC<MapComponentProps> = ({isEditing, latitude, longitude, onLocationChange}) => {
    const [position, setPosition] = useState<LatLngExpression>([latitude, longitude]);
+
+   if(latitude == 0 || longitude == 0){
+      return (
+         <Box
+            sx={{
+               height: "100%", 
+               width: "100%", 
+            }}
+         >
+            <Typography
+               sx={{
+                  color:'gray',
+                  textAlign:'center',
+                  marginTop:'115px'
+               }}
+               >
+               No location data available
+            </Typography>
+         </Box>
+      )
+   }
 
    return (
       <MapContainer 

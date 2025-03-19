@@ -204,7 +204,7 @@ const AddImagesModal: React.FC<AddImageModalProps> = ({ open, onClose, refetch }
                      {addImageMutation.isPending ? (
                        <CircularProgress size={24} sx={{ color: "white" }} />
                         ) : (
-                       "Sumbit"
+                       "Submit"
                      )}
                   </Button>
                   <Button

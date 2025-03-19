@@ -13,6 +13,8 @@ export interface ProfileDescription{
     state: string;
     subscriptionStatus: string;
     type: string;
+    startDate: string;
+    endDate: string;
 }
 
 export interface ProfileMapImage{
