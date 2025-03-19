@@ -25,7 +25,7 @@ const LoginContainer = () => {
 
          toast.success("Company login successfull")
          setTimeout(() => {
-            navigate("/");
+            navigate("/dashboard");
          }, 3000);
       },
       onError: (err: any) => {

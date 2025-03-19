@@ -62,7 +62,7 @@ const LoginForm:React.FC<LoginFormProps> = ({formik, isPending}) => {
             alignItems: "center",
             gap: 2,
           }}
-        >
+          >
           <TextField
             sx={{ color: "#7940CF", width: "80%" }}
             label="Email"

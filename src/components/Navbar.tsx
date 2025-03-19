@@ -1,11 +1,18 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, Tooltip, Typography } from "@mui/material";
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import Logo from '../assets/images/ParkEase_Logo_black.png';
+import { useState } from "react";
+import AddCoinModal from "./modals/AddCoinModal";
 
 const Navbar = () => {
-   const coins = localStorage.getItem("coins");
+
+   const coins = Number(localStorage.getItem("coins")) || 0;
    const name = localStorage.getItem("name");
+
+   const [open, setOpen] = useState(false);
+   const handleOpen = () => setOpen(true);
+   const handleClose = () => setOpen(false);
 
    return (
       <Box
@@ -40,21 +47,21 @@ const Navbar = () => {
                gap: 2,
             }}
          >
-            <Box
-               sx={{
-               display: "flex",
-               alignItems: "center",
-               gap: 0.5,
-               }}
-            >
-               <Typography sx={{ fontWeight: "600" }}>{coins}</Typography>
-               <TbCoinRupeeFilled
-               style={{
-                  color: "#FFD700",
-                  fontSize: "25px",
-               }}
-               />
-            </Box>
+            <Tooltip title="Add coins" arrow>
+               <Box 
+                  onClick={handleOpen}
+                  sx={{display:'flex', gap:1, alignItems:'center', cursor:'pointer'}}>
+                  <Typography sx={{color:'black', fontWeight:'600'}}>
+                     {coins}
+                  </Typography>
+                  <TbCoinRupeeFilled 
+                     style={{
+                        color:'gold',
+                        fontSize:'28px'
+                     }}
+                     />
+               </Box>
+            </Tooltip>
             {/* <Tooltip title="notifications" arrow>
                   <NotificationsIcon sx={{ cursor: "pointer" }} />
                </Tooltip> */}
@@ -66,11 +73,19 @@ const Navbar = () => {
             >
                ParkEase
             </Typography>
-            <Link component={NavLink} underline="none" to="/">
+            <Link component={NavLink} underline="none" to="/dashboard">
                <img style={{ height: "70px", width: "auto" }} src={Logo} alt="Logo" />
             </Link>
          </Box>
          </Box>
+
+         <AddCoinModal
+            coins={coins}
+            handleClose={handleClose}
+            open={open}
+            />
+
+
       </Box>
    );
 };
