@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddNewSlotModal from "../components/modals/AddNewSlotModal";
-import { AddSlotCredentials } from "../types/slot.";
+import { AddSlotCredentials } from "../types/slotTypes";
 import { toast } from "sonner";
 
 

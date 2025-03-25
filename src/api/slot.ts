@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AddSlotCredentials } from "../types/slot.";
+import { AddSlotCredentials } from "../types/slotTypes";
 
 export const getSlots = async () => {
    try {

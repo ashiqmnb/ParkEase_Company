@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TbCoinRupeeFilled } from "react-icons/tb";
 import { toast } from "sonner";
 import { confirmPaymentApi, cretePayment } from "../../api/payment";
-import { PaymentData } from "../../types/payment";
+import { PaymentData } from "../../types/paymentTypes";
 
 interface AddCoinModalProps {
    open: boolean,

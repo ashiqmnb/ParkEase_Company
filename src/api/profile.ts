@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AddressFormValues, EditLatLondValues } from "../types/profile";
+import { AddressFormValues, EditLatLondValues } from "../types/profileTypes";
 
 
 

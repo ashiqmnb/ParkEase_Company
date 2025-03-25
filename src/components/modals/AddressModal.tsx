@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { AddressFormValues } from "../../types/profile";
+import { AddressFormValues } from "../../types/profileTypes";
 import { useMutation } from "@tanstack/react-query";
 import { AddAddress } from "../../api/profile";
 

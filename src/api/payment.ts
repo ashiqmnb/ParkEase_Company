@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PaymentData } from "../types/payment";
+import { PaymentData } from "../types/paymentTypes";
 
 
 

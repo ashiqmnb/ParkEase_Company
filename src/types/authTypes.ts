@@ -22,3 +22,8 @@ export interface ResetPwCredentials {
 	email: string;
 	newPassword: string;
 }
+
+export interface ChangePwCredentials{
+	newPassword: string;
+	currentPassword: string;
+}

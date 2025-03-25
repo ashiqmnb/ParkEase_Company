@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Box, Typography, Button, Avatar, IconButton, CircularProgress } from "@mui/material";
-import { ImageData } from "../../types/profile";
+import { ImageData } from "../../types/profileTypes";
 import { Upload, Close, Image } from '@mui/icons-material';
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LoginCredential, ResetPwCredentials, verifyEmailCredentials } from "../types/authTypes";
+import { ChangePwCredentials, LoginCredential, ResetPwCredentials, verifyEmailCredentials } from "../types/authTypes";
 
 
 
@@ -42,6 +42,23 @@ export const resetpw = async (credential: ResetPwCredentials)=>{
    try{
       const res = await axios.patch(`https://localhost:7277/api/Auth/company/reset-password`,credential)
       return res.data
+   }
+   catch (err: any) {
+      return Promise.reject(err.response.data);
+   }
+}
+
+
+export const changePassword = async(credentials: ChangePwCredentials)=>{
+   try{
+      await axios.patch('https://localhost:7277/api/Auth/company/change-password', 
+         credentials,
+         {
+            headers:{
+               Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+         }
+      );
    }
    catch (err: any) {
       return Promise.reject(err.response.data);

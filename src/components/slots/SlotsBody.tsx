@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Slot } from "../../types/slot.";
+import { Slot } from "../../types/slotTypes";
 import React, { useState } from "react";
 import SlotDetailsModal from "../modals/SlotDetailsModal";
 

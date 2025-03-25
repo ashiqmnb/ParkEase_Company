@@ -1,20 +1,22 @@
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
-import { ProfileDescription } from "../../types/profile";
+import { ProfileDescription } from "../../types/profileTypes";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UpdateProfileModal from "../modals/UpdateProfileModal";
 import AddSubModal from "../modals/AddSubModal";
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 
 
 interface ProfileDetailsProps{
-   handleLogout:()=>void,
    data:ProfileDescription,
    openAddress: ()=>void,
-   refetch: ()=> void
+   refetch: ()=> void,
+   openLogout: ()=> void,
+   openChangePw: ()=>void
 }
 
-const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, openAddress, refetch}) => {
+const ProfileDetails : React.FC<ProfileDetailsProps> = ({data, openAddress, refetch, openLogout, openChangePw}) => {
 
    const navigate = useNavigate();
 
@@ -65,9 +67,14 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({handleLogout, data, ope
                   12 (2W)  24(4W)
                </Typography>
             </Box>
-            <Tooltip title='Logout' arrow>
-               <LogoutIcon onClick={handleLogout} />
-            </Tooltip> 
+            <Box sx={{display:'flex', gap:3}}>
+               <Tooltip title='Change Password' arrow>
+                  <DriveFileRenameOutlineIcon onClick={openChangePw} />
+               </Tooltip> 
+               <Tooltip title='Logout' arrow>
+                  <LogoutIcon onClick={openLogout} />
+               </Tooltip> 
+            </Box>
          </Box>
 
          <Box

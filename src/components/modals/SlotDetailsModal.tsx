@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Modal, Typography, Button } from "@mui/material";
-import { Slot } from "../../types/slot.";
+import { Slot } from "../../types/slotTypes";
 
 interface SlotDetailsModalProps {
    open: boolean;

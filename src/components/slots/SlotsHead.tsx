@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 
 interface SlotsHeadProps {
