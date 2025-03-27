@@ -13,6 +13,7 @@ import * as Yup from "yup";
 import ChangePwModal from "../components/modals/ChangePwModal";
 import { changePassword } from "../api/auth";
 import { toast } from "sonner";
+import { getSlotCount } from "../api/slot";
 
 const ProfileContainer = () => {
    const navigate = useNavigate();
@@ -20,7 +21,10 @@ const ProfileContainer = () => {
    const [openLogout, setOpenLogout] = useState<boolean>(false);
    const [openChangePw, setOpenChangePw] = useState<boolean>(false);
 
-
+   const {data: slotsCount} = useQuery({
+      queryKey:['slotsCount'],
+      queryFn: getSlotCount
+   })
 
    const changePwMutation = useMutation({
       mutationFn: changePassword,
@@ -111,6 +115,8 @@ const ProfileContainer = () => {
             openLogout={()=>setOpenLogout(true)}
             refetch={refetch}
             openChangePw={()=>setOpenChangePw(true)}
+            twoWheeler={slotsCount?.twoWheeler}
+            fourWheeler={slotsCount?.fourWheeler}
          />
          
          <MapAndImages

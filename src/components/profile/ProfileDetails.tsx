@@ -13,10 +13,12 @@ interface ProfileDetailsProps{
    openAddress: ()=>void,
    refetch: ()=> void,
    openLogout: ()=> void,
-   openChangePw: ()=>void
+   openChangePw: ()=>void;
+   twoWheeler: number;
+   fourWheeler: number;
 }
 
-const ProfileDetails : React.FC<ProfileDetailsProps> = ({data, openAddress, refetch, openLogout, openChangePw}) => {
+const ProfileDetails : React.FC<ProfileDetailsProps> = ({data, openAddress, refetch, openLogout, openChangePw, twoWheeler, fourWheeler}) => {
 
    const navigate = useNavigate();
 
@@ -64,7 +66,7 @@ const ProfileDetails : React.FC<ProfileDetailsProps> = ({data, openAddress, refe
                   Listed Slots
                </Typography>
                <Typography sx={{ fontSize:'14px',  fontWeight:'600',}}>
-                  12 (2W)  24(4W)
+                  {twoWheeler} (2W)  {fourWheeler} (4W)
                </Typography>
             </Box>
             <Box sx={{display:'flex', gap:3}}>

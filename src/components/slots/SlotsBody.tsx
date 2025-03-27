@@ -10,14 +10,14 @@ interface SlotsBodyProps{
 
 const getBackgroundColor = (status: string) => {
    switch (status) {
-     case "Available":
-       return "#D9D9D9";
-     case "Reserved":
-       return "#2DC98A";
-     case "Parked":
-       return "#2F7A58";
-     default:
-       return "#D9D9D9";
+      case "Available":
+         return "#D9D9D9";
+      case "Reserved":
+         return "#2DC98A";
+      case "Parked":
+         return "#2F7A58";
+      default:
+         return "#D9D9D9";
    }
  };
 

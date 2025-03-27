@@ -35,3 +35,20 @@ export const addSlots = async (values:AddSlotCredentials) => {
    }
 }
 
+
+export const getSlotCount = async () => {
+   try {
+      const res = await axios.get(
+         `https://localhost:7144/api/Slots/count`,
+         {
+            headers: {
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+         }
+      );
+      return res.data.data;
+   } 
+   catch (err: any) {
+      return Promise.reject(err.response.data);
+   }
+};

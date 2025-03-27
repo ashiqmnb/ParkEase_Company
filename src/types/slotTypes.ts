@@ -10,5 +10,5 @@ export interface Slot{
 
 export interface AddSlotCredentials{
     name: string;
-    type: string
+    type: string;
 }

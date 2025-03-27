@@ -150,7 +150,7 @@ const AddCoinModal:React.FC<AddCoinModalProps> = ({ open, handleClose, coins }) 
             <Box sx={{marginY:'20px', display:'flex', flexDirection:'column', gap:1}}>
                <TextField
                   type="number"
-                  label="Enter Coins"
+                  label="Enter Amount"
                   variant="outlined"
                   fullWidth
                   rows={3}
