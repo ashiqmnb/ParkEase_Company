@@ -9,6 +9,7 @@ import ResetPw from './pages/auth/ResetPw';
 import Layout from './components/Layout';
 import Profile from './pages/Profile';
 import Slots from './pages/Slots';
+import Transactions from './pages/Transactions';
 
 
 
@@ -26,7 +27,7 @@ function AppContext(){
         <Route path='/' element={<Layout/>} >
           <Route path='dashboard' element={<h1>Dashboard</h1>}/>
           <Route path='slots' element={<Slots/>}/>
-          <Route path='history' element={<h1>History</h1>}/>
+          <Route path='transactions' element={<Transactions/>}/>
           <Route path='profile' element={<Profile />}/>
         </Route>
 

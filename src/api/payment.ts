@@ -38,3 +38,20 @@ export const confirmPaymentApi = async (paymentData: PaymentData) => {
       return Promise.reject(err.response.data);
    }
 };
+
+
+export const getTransactions = async(pageNumber: number, pageSize: number)=>{
+   try{
+      const res = await axios.get(`https://localhost:7050/api/Transaction/companyId/${pageNumber}/${pageSize}`,
+         {
+            headers: {
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+         }
+      );
+      return res.data.data
+   }
+   catch (err: any) {
+      return Promise.reject(err.response.data);
+   }
+}

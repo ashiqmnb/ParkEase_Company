@@ -3,8 +3,8 @@ import logo from "../assets/images/ParkEase_Logo_noBg.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GarageIcon from '@mui/icons-material/Garage';
-import TableViewIcon from '@mui/icons-material/TableView';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 const listItemBox = {
    height: "50px",
@@ -118,19 +118,19 @@ const Sidebar = () => {
          </Box>
 
          <Box
-            onClick={() => navigate("history")}
+            onClick={() => navigate("transactions")}
             sx={{
                ...listItemBox,
-               backgroundColor: location.pathname.startsWith("/history")
+               backgroundColor: location.pathname.startsWith("/transactions")
                ? "#2DC98A"
                : "#101921",
             }}
             >
-            <Tooltip title="History" arrow>
-               <TableViewIcon
+            <Tooltip title="Transactions" arrow>
+               <ReceiptIcon
                   sx={{
                      display: { xs: "hidden", sm: "none" },
-                     color: location.pathname.startsWith("/history")
+                     color: location.pathname.startsWith("/transactions")
                         ? "#101921"
                         : "#2DC98A",
                   }}
@@ -139,12 +139,12 @@ const Sidebar = () => {
             <Typography
                sx={{
                   ...listItemText,
-                  color: location.pathname.startsWith("/history")
+                  color: location.pathname.startsWith("/transactions")
                      ? "#101921"
                      : "#2DC98A",
                }}
             >
-               History
+               Transactions
             </Typography>
          </Box>
 
