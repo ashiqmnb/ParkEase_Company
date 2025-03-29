@@ -10,6 +10,7 @@ import Layout from './components/Layout';
 import Profile from './pages/Profile';
 import Slots from './pages/Slots';
 import Transactions from './pages/Transactions';
+import Dashboard from './pages/Dashboard';
 
 
 
@@ -25,7 +26,7 @@ function AppContext(){
 
       <Routes>
         <Route path='/' element={<Layout/>} >
-          <Route path='dashboard' element={<h1>Dashboard</h1>}/>
+          <Route path='dashboard' element={<Dashboard/>}/>
           <Route path='slots' element={<Slots/>}/>
           <Route path='transactions' element={<Transactions/>}/>
           <Route path='profile' element={<Profile />}/>
